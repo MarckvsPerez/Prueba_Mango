@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <nav className="w-full h-16 bg-gray-800 text-white p-4 fixed top-0 left-0 right-0 z-50">
+    <nav className="w-full h-16 bg-gray-800 text-white p-4 fixed top-0 left-0 right-0 z-50 font-mono">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-xl font-bold">Mango's technical test</div>
         <ul className="flex space-x-4">
