@@ -112,48 +112,48 @@ const Range: React.FC<RangeProps> = ({
   }, [isDragging]);
 
   return (
-    <div className="w-full max-w-md mx-auto p-4">
-      <div
-        ref={rangeRef}
-        className="relative h-2 bg-gray-200 rounded-full cursor-pointer"
-      >
-        {mode === "fixed" &&
-          rangeValues.map((value, index) => (
-            <div
-              key={value}
-              className="absolute w-4 h-4 bg-gray-300 -top-1 rounded-full"
-              style={{
-                left: `${((value - min) / (max - min)) * 100}%`,
-                transform: "translateX(-50%)",
-              }}
-            />
-          ))}
+    <div className="w-full max-w-xl mx-auto p-4">
+      <div className="flex items-center gap-4">
+        <span className="w-16 text-center">{values[0].toFixed(2)}€</span>
         <div
-          className="absolute h-full bg-purple-600 rounded-full"
-          style={{
-            left: `${((values[0] - min) / (max - min)) * 100}%`,
-            right: `${100 - ((values[1] - min) / (max - min)) * 100}%`,
-            cursor: "default",
-          }}
-        />
-        <button
-          className={`absolute w-4 h-4 bg-white border-2 border-purple-600 rounded-full -mt-1 transform -translate-x-1/2 transition-transform hover:scale-125 ${
-            isDragging === "min" ? "cursor-grabbing scale-125" : "cursor-grab"
-          }`}
-          style={{ left: `${((values[0] - min) / (max - min)) * 100}%` }}
-          onMouseDown={handleMouseDown("min")}
-        />
-        <button
-          className={`absolute w-4 h-4 bg-white border-2 border-purple-600 rounded-full -mt-1 transform -translate-x-1/2 transition-transform hover:scale-125 ${
-            isDragging === "max" ? "cursor-grabbing scale-125" : "cursor-grab"
-          }`}
-          style={{ left: `${((values[1] - min) / (max - min)) * 100}%` }}
-          onMouseDown={handleMouseDown("max")}
-        />
-      </div>
-      <div className="flex justify-between mt-2">
-        <span className="w-16 text-center">${values[0].toFixed(2)}</span>
-        <span className="w-16 text-center">${values[1].toFixed(2)}</span>
+          ref={rangeRef}
+          className="relative h-2 bg-gray-200 rounded-full cursor-pointer flex-1"
+        >
+          {mode === "fixed" &&
+            rangeValues.map((value, index) => (
+              <div
+                key={value}
+                className="absolute w-4 h-4 bg-gray-300 -top-1 rounded-full"
+                style={{
+                  left: `${((value - min) / (max - min)) * 100}%`,
+                  transform: "translateX(-50%)",
+                }}
+              />
+            ))}
+          <div
+            className="absolute h-full bg-purple-600 rounded-full"
+            style={{
+              left: `${((values[0] - min) / (max - min)) * 100}%`,
+              right: `${100 - ((values[1] - min) / (max - min)) * 100}%`,
+              cursor: "default",
+            }}
+          />
+          <button
+            className={`absolute w-4 h-4 bg-white border-2 border-purple-600 rounded-full -mt-1 transform -translate-x-1/2 transition-transform hover:scale-125 ${
+              isDragging === "min" ? "cursor-grabbing scale-125" : "cursor-grab"
+            }`}
+            style={{ left: `${((values[0] - min) / (max - min)) * 100}%` }}
+            onMouseDown={handleMouseDown("min")}
+          />
+          <button
+            className={`absolute w-4 h-4 bg-white border-2 border-purple-600 rounded-full -mt-1 transform -translate-x-1/2 transition-transform hover:scale-125 ${
+              isDragging === "max" ? "cursor-grabbing scale-125" : "cursor-grab"
+            }`}
+            style={{ left: `${((values[1] - min) / (max - min)) * 100}%` }}
+            onMouseDown={handleMouseDown("max")}
+          />
+        </div>
+        <span className="w-16 text-center">{values[1].toFixed(2)}€</span>
       </div>
     </div>
   );
