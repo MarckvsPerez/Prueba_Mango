@@ -3,13 +3,13 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import Range from "../Range";
 
 describe("Range Component", () => {
-  test("renderiza correctamente en modo normal", () => {
+  test("renders correctly in normal mode", () => {
     render(<Range mode="normal" min={0} max={100} />);
     expect(screen.getByText("0.00€")).toBeInTheDocument();
     expect(screen.getByText("100.00€")).toBeInTheDocument();
   });
 
-  test("renderiza correctamente en modo fixed", () => {
+  test("renders correctly in fixed mode", () => {
     const rangeValues = [0, 25, 50, 75, 100];
     render(<Range mode="fixed" rangeValues={rangeValues} />);
 
@@ -17,7 +17,7 @@ describe("Range Component", () => {
     expect(screen.getByText("100.00€")).toBeInTheDocument();
   });
 
-  test("maneja cambios de valor correctamente", () => {
+  test("handles value changes correctly", () => {
     const handleChange = jest.fn();
     render(<Range mode="normal" min={0} max={100} onChange={handleChange} />);
 
@@ -29,7 +29,7 @@ describe("Range Component", () => {
     expect(handleChange).toHaveBeenCalled();
   });
 
-  test("maneja el arrastre del control máximo correctamente", () => {
+  test("handles maximum control drag correctly", () => {
     const handleChange = jest.fn();
     render(<Range mode="normal" min={0} max={100} onChange={handleChange} />);
 
@@ -41,7 +41,7 @@ describe("Range Component", () => {
     expect(handleChange).toHaveBeenCalled();
   });
 
-  test("maneja correctamente los valores en modo fixed", () => {
+  test("handles values correctly in fixed mode", () => {
     const rangeValues = [0, 25, 50, 75, 100];
     const handleChange = jest.fn();
     render(
@@ -62,14 +62,14 @@ describe("Range Component", () => {
     expect(handleChange).toHaveBeenCalledTimes(2);
   });
 
-  test("maneja el caso de rangeValues vacío en modo fixed", () => {
+  test("handles empty rangeValues in fixed mode", () => {
     render(<Range mode="fixed" rangeValues={[]} min={0} max={100} />);
 
     expect(screen.getByText("0.00€")).toBeInTheDocument();
     expect(screen.getByText("100.00€")).toBeInTheDocument();
   });
 
-  test("limpia los event listeners al desmontar", () => {
+  test("cleans up event listeners on unmount", () => {
     const { unmount } = render(<Range mode="normal" min={0} max={100} />);
 
     const slider = screen.getAllByRole("button")[0];
@@ -78,7 +78,7 @@ describe("Range Component", () => {
     unmount();
   });
 
-  test("en modo fixed, el control maximo no puede ser menor al minimo", () => {
+  test("in fixed mode, maximum control cannot be less than minimum", () => {
     const rangeValues = [0, 25, 50, 75, 100];
     const handleChange = jest.fn();
     render(

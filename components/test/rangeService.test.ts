@@ -13,7 +13,7 @@ describe("Range Service", () => {
   });
 
   describe("fetchNormalRangeData", () => {
-    it("debería obtener datos del rango normal correctamente", async () => {
+    it("should fetch normal range data correctly", async () => {
       const mockData = { min: 0, max: 100 };
       (global.fetch as jest.Mock).mockResolvedValueOnce({
         ok: true,
@@ -28,7 +28,7 @@ describe("Range Service", () => {
       expect(result).toEqual(mockData);
     });
 
-    it("debería lanzar un error cuando la respuesta no es ok", async () => {
+    it("should throw an error when response is not ok", async () => {
       (global.fetch as jest.Mock).mockResolvedValueOnce({
         ok: false,
       });
@@ -40,7 +40,7 @@ describe("Range Service", () => {
   });
 
   describe("fetchFixedRangeData", () => {
-    it("debería obtener datos del rango fijo correctamente", async () => {
+    it("should fetch fixed range data correctly", async () => {
       const mockData = { rangeValues: [0, 25, 50, 75, 100] };
       (global.fetch as jest.Mock).mockResolvedValueOnce({
         ok: true,
@@ -55,7 +55,7 @@ describe("Range Service", () => {
       expect(result).toEqual(mockData);
     });
 
-    it("debería lanzar un error cuando la respuesta no es ok", async () => {
+    it("should throw an error when response is not ok", async () => {
       (global.fetch as jest.Mock).mockResolvedValueOnce({
         ok: false,
       });
